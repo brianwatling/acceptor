@@ -106,7 +106,7 @@ int main(int argc, char* argv[])
         namespace po = boost::program_options;
         po::options_description desc("Allowed options");
         desc.add_options()
-            ("help,h", "produce help message")
+            ("help", "produce help message")
             ("name,n", po::value<std::string>(), "name of the UNIX socket to bind")
             ("host,h", po::value<std::string>()->default_value("localhost"), "host to listen for tcp connections on")
             ("port,p", po::value<std::string>(), "port to listen for tcp connections on")
@@ -134,7 +134,7 @@ int main(int argc, char* argv[])
 
         size_t nextIndex = 0;
 
-        while(poll(&pfds[0], pfds.size(), -1) > 0) {std::cout << "polled" << std::endl;
+        while(poll(&pfds[0], pfds.size(), -1) > 0) {
             if(pfds[0].revents) {
                 const int clientSock = accept(tcpSocket, NULL, NULL);
                 std::cout << "got socket: " << clientSock << std::endl;
@@ -167,7 +167,7 @@ int main(int argc, char* argv[])
                 } else {
                     ++cur;
                 }
-            }std::cout << "polling" << std::endl;
+            }
         }
 
     } catch(std::exception& e) {
