@@ -6,6 +6,8 @@
 
 int acceptor_connect(const char* path)
 {
+    //references:
+    //http://beej.us/guide/bgipc/output/html/multipage/unixsock.html
     int sockfd = -1;
     struct sockaddr_un remote = {};
     int len = 0;
