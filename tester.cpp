@@ -42,6 +42,7 @@ int main(int argc, char* argv[])
             write(clientSock, message.c_str(), message.length());
             close(clientSock);
         }
+        close(acceptor);
     }
 
     perror(NULL);
