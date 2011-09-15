@@ -4,21 +4,21 @@ This daemon will listen for connections on a TCP port and distribute them to oth
 
 #Example
 
--Start Acceptor. Specify the port it should listen on. Specify a name for the Unix socket used to send TCP connections to other daemons.
+Start Acceptor. Specify the port it should listen on. Specify a name for the Unix socket used to send TCP connections to other daemons.
     ./acceptor --port=10000 --name=acceptorTest
 
--Start a daemon process which receives connections from acceptor, for example the included 'tester' app.
+Start a daemon process which receives connections from acceptor, for example the included 'tester' app.
     ./tester --name=acceptorTest --message=SomeTestMessage
 
--Now acceptor will pass new connections to 'tester', which will send the string "SomeTestMessage" to the client.
--Start a telnet session:
+Now acceptor will pass new connections to 'tester', which will send the string "SomeTestMessage" to the client.
+Start a telnet session:
     telnet localhost 10000
     SomeTestMessage
 
--Add another 'tester' app to have acceptor split connections between both processes:
+Add another 'tester' app to have acceptor split connections between both processes:
     ./tester --name=acceptorTest --message=SomeOtherMessage
 
--Start telnet sessions, watch the different messages:
+Start telnet sessions, watch the different messages:
     telnet localhost 10000
     SomeTestMessage
     telnet localhost 10000
